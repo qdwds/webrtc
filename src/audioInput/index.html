@@ -44,14 +44,16 @@
         },
         methods:{
             async getAudioList(){
+                //  获取所有音频设备
                 const devices = await navigator.mediaDevices.enumerateDevices();
+                //  过滤 输入音频
                 const audioDevicesInput = devices.filter(a =>{
                     return a.kind === 'audioinput';
                 });
                 this.audioDevicesInput = audioDevicesInput;
             },
+            //  选择音频事件
             async handleAudioDevices(a){
-                console.log(a.target.value);
                 let select = a.target.value;
                 let stream = await navigator.mediaDevices.getUserMedia({
                     audio:false,
